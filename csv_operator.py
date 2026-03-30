@@ -105,6 +105,8 @@ class CSVEditorApp:
             self.df = pd.read_csv(file_path, encoding='utf-8-sig', engine='python')
             self.update_display()
             self.status_var.set(f"Loaded: {file_path}")
+        except pd.errors.EmptyDataError:
+            messagebox.showinfo("Info", "The file is empty and contains no data.")
         except Exception as e:
             messagebox.showerror("Error", f"Failed to load CSV: {e}")
 
